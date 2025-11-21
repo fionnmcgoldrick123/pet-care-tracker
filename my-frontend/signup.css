@@ -1,0 +1,94 @@
+/* use border-box to make width calculations include padding/border */
+* {
+    box-sizing: border-box;
+}
+
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5efe6; 
+      color: #5c4033; 
+    }
+
+    header {
+      background-color: #d2b48c; 
+      padding: 20px;
+      text-align: center;
+      border-bottom: 5px solid #5c4033;
+    }
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.register-form {
+    background: #fff;
+    padding: 20px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    max-width: 420px;
+    border: 2px solid #d2b48c;
+    text-align: center;
+    margin: 12px auto;
+}
+
+.register-form h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d2b48c;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.form-group input:focus {
+    border-color: #d2b48c;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(210, 180, 140, 0.12);
+}
+
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5c4033;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-group button:hover {
+    background-color: #3e2a1f;
+}
+
+.paw-decor {
+    font-size: 1.6em;
+    color: #d2b48c;
+    margin-bottom: 8px;
+}
