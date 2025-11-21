@@ -45,8 +45,9 @@ body {
       flex-direction: column;
     }
 
-    .card input[type="text"],
+    .card input[type="email"],
     .card input[type="password"],
+    .card input[type="text"],
     .card button {
       margin-bottom: 15px;
       padding: 10px;
