@@ -16,13 +16,14 @@
     <div class="container">
         <div class="card">
             <h2>Register</h2>
-            <form>
-                <input type="email" placeholder="Email" required>
-                <input type="text" placeholder="Username" required>
-                <input type="password" placeholder="Password" required>
+            <form id="register-form">
+                <input id="register-email" type="email" placeholder="Email" required>
+                <input id="register-username" type="text" placeholder="Username" required>
+                <input id="register-password" type="password" placeholder="Password" required>
                 <div class="g-recaptcha" data-sitekey="6Ld4DBQsAAAAAKGY5nIN2oIVUkFVtq8Ztga1ydj_"></div>
-                <button type="submit">Register</button>
+                <button id="register-submit" type="submit">Register</button>
             </form>
+            <div id="register-message" aria-live="polite"></div>
             <p>Already have an account? <a href="index.html">Login</a></p>
             <div class="paw-decor">🐾 🐾</div>
         </div>
@@ -31,3 +32,43 @@
 </body>
 
 </html>
+
+<script>
+    (function () {
+
+        const form = document.getElementById('register-form');
+        const msg = document.getElementById('register-message');
+
+        form.addEventListener('submit', async (e) => {
+
+            e.preventDefault();
+            msg.textContent = '';
+
+            const username = document.getElementById('register-username').value.trim();
+            const password = document.getElementById('register-password').value;
+            const submitBtn = document.getElementById('register-submit');
+
+            submitBtn.disabled = true;
+
+            try {
+                const res = await fetch('http://localhost:8000/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.detail || JSON.stringify(data));
+
+                msg.style.color = 'green';
+                msg.textContent = data.message || 'Registered successfully';
+                
+            } catch (err) {
+                msg.style.color = 'crimson';
+                msg.textContent = 'Registration failed: ' + (err.message || err);
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    })();
+</script>

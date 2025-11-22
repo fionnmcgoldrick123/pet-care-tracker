@@ -16,16 +16,57 @@
   <div class="container">
     <div class="card">
       <h2>Login</h2>
-      <form>
-        <input type="text" placeholder="Username" required>
-        <input type="password" placeholder="Password" required>
+      <form id="login-form">
+        <input id="login-username" type="text" placeholder="Username" required>
+        <input id="login-password" type="password" placeholder="Password" required>
         <div class="g-recaptcha" data-sitekey="6Ld4DBQsAAAAAKGY5nIN2oIVUkFVtq8Ztga1ydj_"></div>
-        <button type="submit">Login</button>
+        <button id="login-submit" type="submit">Login</button>
       </form>
+      <div id="login-message" aria-live="polite"></div>
       <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
       <div class="paw-decor">🐾 🐾</div>
     </div>
   </div>
+  <script>
+    (function () {
+      const form = document.getElementById('login-form');
+
+      const msg = document.getElementById('login-message');
+
+      form.addEventListener('submit', async (e) => {
+
+        e.preventDefault();
+        msg.textContent = '';
+
+        const username = document.getElementById('login-username').value.trim();
+        const password = document.getElementById('login-password').value;
+        const submitBtn = document.getElementById('login-submit');
+
+        submitBtn.disabled = true;
+
+        try {
+          const res = await fetch('http://localhost:8000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) throw new Error(data.detail || JSON.stringify(data));
+
+          msg.style.color = 'green';
+          msg.textContent = data.message || 'Login successful';
+
+        } catch (err) {
+          msg.style.color = 'crimson';
+          msg.textContent = 'Login failed: ' + (err.message || err);
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
