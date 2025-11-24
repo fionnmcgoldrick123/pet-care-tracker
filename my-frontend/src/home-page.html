@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Menu – Pet Care Tracker</title>
+    <link rel="stylesheet" href="home-page.css">
+</head>
+<body>
+    <header>
+        <h1>🐾 Pet Care Tracker</h1>
+        <button class="logout-btn" onclick="handleLogout()">
+            <span>🚪</span>
+            <span>Logout</span>
+        </button>
+    </header>
+    
+    <div class="menu-container">
+        <div class="circle-menu">
+            <div class="center-icon">🐕</div>
+            <div class="circle-item" data-action="chat">
+                💬
+                <span class="label">Chat</span>
+            </div>
+            <div class="circle-item" data-action="calendar">
+                📅
+                <span class="label">Calendar</span>
+            </div>
+            <div class="circle-item" data-action="exercise">
+                🏃
+                <span class="label">Exercise</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Box -->
+    <div class="chat-overlay" id="chatOverlay"></div>
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3>💬 Pet Care Chat</h3>
+            <button class="chat-close" id="chatClose">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">
+                <div class="message-bubble">
+                    Hello! How can I help you with your pet today? 🐾
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
+            <button class="chat-send" id="chatSend">Send</button>
+        </div>
+    </div>
+
+    <script src="home-page.js"></script>
+</body>
+</html>
